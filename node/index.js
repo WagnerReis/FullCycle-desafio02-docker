@@ -20,7 +20,7 @@ const sql = `SELECT * FROM people`
 
 app.get('/', (req, res) => {
     connection.query(sql, function (err, result) {
-      if (err) throw err;
+      try{
         let message = `<h1>Full Cycle Rocks!</h1>
         <p>- Lista de nomes cadastrados</p>
         <ul>`
@@ -29,5 +29,8 @@ app.get('/', (req, res) => {
         });
         message += '</ul>';
         res.send(message)
+      }catch(err) {
+        throw err;
+      }
     })
 })
